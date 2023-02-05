@@ -1,6 +1,8 @@
 "Knight Shift" by Joey Jones
 
 Include Basic Screen Effects by Emily Short.
+Release along with a website.
+Release along with an interpreter.
 
 The story headline is "An Interactive Tale of Sir Bevois and Friends".
 
@@ -17,13 +19,13 @@ The Book of Heroes is in the Windwhistle Tower. "The heroes in Windwhistle Tower
 
 The heroes you may recruit:[line break][go through recruits]
 
-You can RECRUIT one of them, or hold a TRYOUT for the two spaces left in the team."
+You can RECRUIT one of them."
 
 [[list of people in the recruitment pool].]
 
 To say go through heroes:
 	repeat with N running through the people in the location of the player:
-		say "[printed name of N]. [traits of N]. [Renown of N in words] renown. [if the mission of N is not 0]. Assigned to Quest #[mission of N][end if].[line break]".
+		say "[printed name of N]. [traits of N]. [Renown of N in words] renown. [if the mission of N is not 0]. Assigned to Quest #[mission of N].[end if][line break]".
 
 To say go through recruits:
 	repeat with N running through the people in the Recruitment Pool:
@@ -73,14 +75,17 @@ Carry out recruiting:
 	clear the screen;
 	say "[paragraph break]Now you turn to your petitions and consider where to marshall your forces.";
 	now the noun is in the Map Room;
-	now every person in Windwhistle Tower is in the Map Room;
+	now every follower in Windwhistle Tower is in the Map Room;
+	now yourself is in the map room.
 	
+Definition: a person is a follower if they are not yourself.
+
 The Map Room is a room. "Outstanding quests:[line break][quests]
 
 
 ASSIGN a hero to the quest number. Heroes available:[line break][go through heroes][paragraph break]When you are ready, SALLY FORTH!"
 
-Assigning is an action applying to one thing and one number. Understand "assign [something] to [number]" and "assign [something] to quest [number]" as Assigning.
+Assigning is an action applying to one thing and one number. Understand "assign [something] to [number]" and "assign [something] to quest [number]" and "assign [something] [number]" as Assigning.
 
 Check assigning:
 	if the number understood is greater than the number of rows in the table of active quests, say "There is no quest #[number understood]." instead;
@@ -109,7 +114,7 @@ Quest	Description	Success	Failure	Bonus	Malus
 "catch a horse"	"Sir Bevois's steed, Arundel, is running wild with the horses of the New Forest"	"The horse has been brought home."	"The horse still goes free."	{"Determined","Wise"}	{"Old"}
 "find a Sword"	"Morgelai, Sir Bevois's dread blade, is lost in the dungeons beneath the Windwhistle Tower"	"The sword has been found."	"The sword is still lost."	{"Attentive","Lucky"}	{"Unobservant","Unlucky"}
 "fight in a tourney"	"King Doon is holding a jousting tournament."	"A good showing was had at the tournament."	"The joust was poor, but there is still time to enter the next bout."	{"riding Arundel","Brave"}	{"Old","Unlucky"}
-"play dice"	"King Hermin needs placating. Letting him lose at dice should help."	"The gambling went in Hermin's favour and he is well pleased."	"Unfortunately the dice favoured us and Hermin is madder than ever."	{"Unlucky","Dim"}	{"Lucky"}
+"play dice"	"King Hermin needs placating. Letting him win at dice should help."	"The gambling went in Hermin's favour and he is well pleased."	"Unfortunately the dice favoured us and Hermin is madder than ever."	{"Unlucky","Dim"}	{"Lucky"}
 "deliver a service"	"King Yvor needs someone to baptise his children."	"The service went well."	"The service is going poorly!"	{"Devout","Old"}	{"Cynical"}
 "rebuff an invasion"	"Norse are invading the coast around the Isle of Wight!"	"The invaders have been rebuffed."	"The invaders are still at large!"	{"Brave","weilding Morgelai","riding Arundel","Attentive"}	{"Unobservant","Cowardly"}
 "fight a usurpation"	"King Redefoun has demanded Josayn's hand in marriage! Meet him on the battlefield!"	"King Redefoun has been slain!"	"King Redefoun yet lives!"	{"Brave","weilding Morgelai","riding Arundel","Loyal"}	{"Cowardly","Treacherous"}
@@ -118,6 +123,11 @@ Quest	Description	Success	Failure	Bonus	Malus
 
 A person has a text called blurb.
 The blurb of Guy is "Guy is your son, twin brother of Miles, and named after your own inconstant father."
+The blurb of Miles is "Miles is your son, twin brother of Guy, and named after a man who once sought to court your love Josayn."
+The blurb of Ascupart is "As tall as he is treacherous."
+The blurb of Saber is "Saber rescued you as a child from your stepmother's treachery, taking you to safety overseas."
+The blurb of Terri is "Terri is Saber's son, and once sought you out in the continent when you were in exile for all those long years." 
+The blurb of Josayn is "Josayn is the love of your life and is constantly getting into trouble."
 
 After deciding the scope of the player:
 	place the contents of Recruitment Pool in scope;
@@ -185,18 +195,20 @@ Passed is a list of numbers that varies.
 Carry out sallying forth:
 	say "The heroes sally forth from the Windwhistle Tower.";
 	run through the missions;
+	say "[paragraph break](Press any key)";
 	wait for any key;
 	clear the screen;
-	now every person in the Map Room is in the Windwhistle Tower;
+	if phase is 4:
+		say "The year is done and now the final reckoning is here:[line break]";
+		say "[go through heroes]";
+		end the story saying "Total renown: [total renown of people in the Windwhistle Tower]";
+	now every follower in the Map Room is in the Windwhistle Tower;
+	now yourself is in the Windwhistle Tower;
 	repeat with figure running through people in Windwhistle Tower:
 		now the mission of figure is 0;
 	repeat with Y running through passed:
 		choose row Y in the Table of Active Quests;
-		blank out the whole row;
-	if phase is 4:
-		say "The year is done and now the final reckoning is here:[line break]";
-		say "[go through heroes]";
-		end the story saying "Total renown: [total renown of people in the Windwhistle Tower]".
+		blank out the whole row.
 
 Merit is a text that varies.
 
@@ -236,7 +248,7 @@ To run through the missions:
 						now merit is the good entry;
 					if the bad entry is not listed in the traits of P and the good entry is not merit:
 						now flaw is the bad entry;
-				if dice is greater than seven:
+				if dice is greater than six:
 					say "[success entry] ";
 					if the quest entry is "rescue Josayn":
 						say "Josayn is now free to go on adventures. The giant is still free: once he was loyal to you.";
