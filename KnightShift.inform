@@ -1,0 +1,290 @@
+"Knight Shift" by Joey Jones
+
+Include Basic Screen Effects by Emily Short.
+
+The story headline is "An Interactive Tale of Sir Bevois and Friends".
+
+[This is a game about recruiting knights and sending them on quests.]
+
+Recruitment is a scene.
+
+Windwhistle Tower is a room. ""
+
+The Book of Heroes is in the Windwhistle Tower. "The heroes in Windwhistle Tower:[line break][go through heroes]
+
+The heroes you may recruit:[line break][go through recruits]
+
+You can RECRUIT one of them, or hold a TRYOUT for the two spaces left in the team."
+
+[[list of people in the recruitment pool].]
+
+To say go through heroes:
+	repeat with N running through the people in the location of the player:
+		say "[printed name of N]. [traits of N][if the mission of N is not 0]. Assigned to Quest #[mission of N][end if].[line break]".
+
+To say go through recruits:
+	repeat with N running through the people in the Recruitment Pool:
+		say "[printed name of N]. [traits of N].[line break]".
+
+[Renown: [renown of N]. ]
+
+When play begins:
+	say "You are Sir Bevois, the Earl of Hampton. The countryside is in chaos, the time for heroes is now. You must gather forth stalwart allies and sally forth across the land."[;
+	now left hand status line is "Average Renown of Windwhistle Tower: [total renown of people in the Windwhistle Tower divided by the number of people in the Windwhistle Tower]".]
+
+[A hero is a kind of person. ]A person has a number called renown. A person has a list of texts called traits.
+
+The description of a person is usually "Renown: [renown]. Traits: [traits]."
+
+
+[To say average renown:
+	Let N be 0;
+	repeat through every hero in the Windwhistle Tower:
+			add renown of the hero]
+		
+
+The Recruitment Pool is a room.
+
+[Some people in the Recruitment Pool are defined by the Table of Recruits.
+
+Some people in the Windwhistle Tower are defined by the Table of Team.]
+
+Saber is a man in the Recruitment Pool. Terri is a man in the Recruitment Pool. Miles is a man in the Recruitment Pool. Guy is a man in the Recruitment Pool.
+
+The renown of Saber is 1.
+
+
+Recruiting is an action applying to one thing. Understand "Recruit [something]" as recruiting.
+
+Check recruiting:
+	if the noun is not a person:
+		say "You can't recruit [the noun]." instead;
+	if the noun is in the Windwhistle Tower:
+		say "[printed name of noun] is already at your service." instead;
+	if the noun is not in the recruitment pool:
+		say "You can't recruit that person." instead.
+
+Carry out recruiting:
+	say "You send a messenger to [noun], urgently requesting aid. [They] arrives within the month.[paragraph break][blurb of the noun]";
+	wait for any key;
+	clear the screen;
+	say "[paragraph break]Now you turn to your petitions and consider where to marshall your forces.";
+	now the noun is in the Map Room;
+	now every person in Windwhistle Tower is in the Map Room;
+	
+The Map Room is a room. "Outstanding quests:[line break][quests]
+
+
+ASSIGN a hero to the quest number. Heroes available:[line break][go through heroes][paragraph break]When you are ready, SALLY FORTH!"
+
+Assigning is an action applying to one thing and one number. Understand "assign [something] to [number]" and "assign [something] to quest [number]" as Assigning.
+
+A person has a number called mission. The mission of a person is usually 0.
+
+Check assigning:
+	if the number understood is greater than the number of rows in the table of active quests, say "There is no quest #[number understood]." instead[;
+	if a person (called the questor) in the location of the player has a mission of 1:
+		say "[Questor] is already assigned to that quest." instead.]
+
+Carry out assigning:
+	now the mission of the noun is the number understood;
+	say "You assign [noun] to quest #[number understood]."
+
+Understand "Sir Bevois" and "Bevois" and "Bevis" as yourself.
+
+A person is usually scenery.
+
+To say quests:
+	repeat with N running from 1 to the number of rows in the Table of Active Quests:
+		choose row N in the Table of Active Quests;
+		say "[N]: [description entry][line break]"
+
+Table of Active Quests	
+Quest	Description	Success	Failure	Bonus	Malus
+"rescue Josayn"	"Sir Bevois's love, Josayn, has been kidnapped by the giant Ascupard."	"Josayn has been rescued."	"Josayn is still kidnapped."	{"Cunning","Lucky"}	{"Dim","Unlucky"}
+"defeat the Dragon"	"A dragon is terrorising the people of Cologne"	"The dragon is defeated."	"The dragon still lives."	{"Brave"}	{"Cowardly"}
+"catch a horse"	"Sir Bevois's steed, Arundel, is running wild with the horses of the New Forest"	"The horse has been brought home."	"The horse still goes free."	{"Determined"}	{"Old"}
+"find a sword"	"Morgelai, Sir Bevois's dread blade, is lost in the dungeons beneath the Windwhistle Tower"	"The sword has been found."	"The sword is still lost."	{"Observant","Lucky"}	{"Unobservant","Unlucky"}
+
+
+A person has a text called blurb.
+The blurb of Guy is "Guy is your son, twin brother of Miles, and named after your own inconstant father."
+
+After deciding the scope of the player:
+	place the contents of Recruitment Pool in scope;
+	
+Rule for reaching inside a room:
+	allow access.
+
+[Assigning is an action applying to two things. Understand "Assign [something] to [something]" as assigning.]
+
+The printed name of the player is "Sir Bevois". The traits of the player are {"Brave", "Boastful", "Sly"}. The renown of the player is 3.
+
+Check assigning:
+	if the noun is not a person:
+		say "You can't assign [the noun]." instead;
+	if the noun is not in the location of the player:
+		say "[noun] is not at your service." instead[;
+	if the second noun is not a number:
+		say "[The second noun] is not a quest." instead.]
+
+A quest is a kind of thing. 
+
+[The list of good traits is {"Brave","Kind","Wise","Good-Looking","Lucky"}.
+The list of bad traits is {"Cowardly","Foolish","Cruel","Ugly","Unlucky"}]
+
+Excess is a room.
+
+Ascupart is a man in the Excess.
+The traits of Ascupart are {"Gigantic", "Cunning", "Untrustworthy"}
+
+Josayn is a woman in Excess.
+
+The traits of Saber are {"Wise", "Kind", "Old"}.
+The traits of Josayn are {"Cunning", "Beautiful", "Unlucky"}.
+The traits of Terri are {"Determined", "Loyal", "Unobservant"}.
+The traits of Guy are {"Devout", "Young", "Dim"}.
+The traits of Miles are {"Young", "Kind", "Clever"}.
+
+Cohesion is a number that varies. Cohesion is 0.
+
+Table of Personality	
+Good	Bad
+"Wise"	"Foolish"
+"Cunning"	"Dim"
+"Determined"	"Lax"
+"Kind"	"Cruel"
+"Devout"	"Cynical"
+"Loyal"	"Treacherous"
+"Lucky"	"Unlucky"
+"Attentive"	"Unobservant"
+"Brave"	"Cowardly"
+
+The world is a region.
+
+The Isle of Wight is a room. The Isle of Wight is in the world.
+Armenia is a room. Armenia is in the world.
+Hampton is a room. Hampton is in the world.
+
+Sallying forth is an action applying to nothing. Understand "Sally forth" as sallying forth.
+
+Check sallying forth:
+	if the player is not in the map room, say "You are not ready to sally forth." instead.
+
+Passed is a list of numbers that varies.
+	
+Carry out sallying forth:
+	say "The heroes sally forth from the Windwhistle Tower.";
+	run through the missions;
+	wait for any key;
+	clear the screen;
+	now every person in the Map Room is in the Windwhistle Tower;
+	repeat with figure running through people in Windwhistle Tower:
+		now the mission of figure is 0;
+	repeat with Y running through passed:
+		choose row Y in the Table of Active Quests;
+		blank out the whole row.
+
+Merit is a text that varies.
+
+Flaw is a text that varies.
+
+Dice is a number that varies. Dice is 0.
+
+To run through the missions:
+	 repeat with N running from 1 to the number of filled rows in the Table of Active Quests:
+		choose row N in the Table of Active Quests;
+		repeat with P running through the people in the Map Room:
+			if mission of P is N:
+				say "[paragraph break][Printed name of P] goes to [quest entry]. ";
+				Let A be a random number between 1 and 6;
+				Let B be a random number between 1 and 6;
+				now dice is A + B;
+				say "([A] + [B]";
+				repeat with X running through traits of P:
+					if X is listed in the bonus entry:
+						say "([X] + 1)";
+						increase dice by one;
+					if X is listed in the malus entry:
+						say "([X] - 1)";
+						decrease dice by one;
+				say "= [dice])[paragraph break]";
+				Let C be a random number between 1 and 3;
+				Let D be a random number between 1 and 3;
+				sort the table of personality in random order;
+				repeat through the table of personality:
+					if the good entry is not listed in the traits of P:
+						now merit is the good entry;
+					if the bad entry is not listed in the traits of P and the good entry is not merit:
+						now flaw is the bad entry;
+				if dice is greater than seven:
+					say "[success entry] ";
+					add N to passed;
+					if dice is not greater than nine:
+						say "The going was tough."
+				otherwise:
+					say "[failure entry] ";
+				if dice is greater than nine:
+					if C is less than 3:
+						say "[printed name of P]'s renown grows. (Renown +1.)";
+						increase renown of P by 1;
+					if C is 3:
+						say "Through the experience, [printed name of P] becomes more [merit in lower case].";
+						add merit to the traits of P;
+				otherwise if dice is greater than six:
+					if C is less than 3:
+						say "[printed name of P]'s renown grows. (Renown +1.)";
+						increase renown of P by 1;
+					if C is 3:
+						say "Through the experience, [printed name of P] becomes more [merit in lower case].";
+						add merit to the traits of P;
+					if D is 1:
+						say "[printed name of P]'s reputation suffers from the ignominy. (Renown -1.)";
+						decrease renown of P by 1;
+					if D is 2:
+						say "The ordeal reveals [printed name of P] to be a [flaw in lower case] person.";
+						add flaw to the traits of P;
+					if D is 3:
+						say "[printed name of P] is injured in the course of action.";
+						increase the injury of P by 1;
+				otherwise:
+					if D is 1:
+						say "[printed name of P]'s reputation suffers from the ignominy. (Renown -1.)";
+						decrease renown of P by 1;
+					if D is 2:
+						say "The ordeal reveals [printed name of P] to be a [flaw in lower case] person.";
+						add flaw to the traits of P;
+					if D is 3:
+						say "[printed name of P] is injured in the course of action.";
+						increase the injury of P by 1.
+					
+Understand "hire [something]" as recruiting.
+
+A person has a number called injury. The injury of a person is usually 0.
+
+[To check cohesion:
+	Let A be a random number between 1 and 6;
+	Let B be a random number between 1 and 6;
+	now cohesion is A + B;
+	Let L be a number
+	repeat with N running through the people in the location of the player:
+		if the 
+	
+Mission Space is a room.
+	
+Cohering is an action applying to nothing. Understand "Cohere" as Cohering.
+
+Carry out cohering:
+	check cohesion;
+	say "[cohesion]"]
+
+
+[Table of Recruits
+Name	Renown	Traits
+Saber	1	{"Wise", "Kind", "Old"}
+Josayn	2	{"Cunning", "Beautiful", "Unlucky"}
+
+
+Table of Team
+Name	Renown	Traits
+Sir Bevois	3	{"Brave", "Boastful", "Sly"}]
