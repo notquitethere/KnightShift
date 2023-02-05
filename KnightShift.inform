@@ -97,9 +97,10 @@ Understand "Sir Bevois" and "Bevois" and "Bevis" as yourself.
 A person is usually scenery.
 
 To say quests:
-	repeat with N running from 1 to 5:
+	sort the table of active quests in random order;
+	repeat with N running from 1 to 3:
 		choose row N in the Table of Active Quests;
-		say "[N]: [description entry][line break]"
+		say "[N]: [description entry][line break]".
 
 Table of Active Quests
 Quest	Description	Success	Failure	Bonus	Malus
