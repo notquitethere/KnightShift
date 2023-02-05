@@ -8,6 +8,9 @@ The story headline is "An Interactive Tale of Sir Bevois and Friends".
 
 Recruitment is a scene.
 
+A person has a number called mission. The mission of a person is usually 0.
+
+
 Windwhistle Tower is a room. ""
 
 The Book of Heroes is in the Windwhistle Tower. "The heroes in Windwhistle Tower:[line break][go through heroes]
@@ -20,7 +23,7 @@ You can RECRUIT one of them, or hold a TRYOUT for the two spaces left in the tea
 
 To say go through heroes:
 	repeat with N running through the people in the location of the player:
-		say "[printed name of N]. [traits of N][if the mission of N is not 0]. Assigned to Quest #[mission of N][end if].[line break]".
+		say "[printed name of N]. [traits of N]. [Renown of N in words] renown. [if the mission of N is not 0]. Assigned to Quest #[mission of N][end if].[line break]".
 
 To say go through recruits:
 	repeat with N running through the people in the Recruitment Pool:
@@ -29,8 +32,8 @@ To say go through recruits:
 [Renown: [renown of N]. ]
 
 When play begins:
-	say "You are Sir Bevois, the Earl of Hampton. The countryside is in chaos, the time for heroes is now. You must gather forth stalwart allies and sally forth across the land."[;
-	now left hand status line is "Average Renown of Windwhistle Tower: [total renown of people in the Windwhistle Tower divided by the number of people in the Windwhistle Tower]".]
+	say "You are Sir Bevois, the Earl of Hampton. The countryside is in chaos, the time for heroes is now. You must gather forth stalwart allies and sally forth across the land.";
+	now left hand status line is "Total Renown of Windwhistle Tower: [total renown of people in the Windwhistle Tower]".
 
 [A hero is a kind of person. ]A person has a number called renown. A person has a list of texts called traits.
 
@@ -51,7 +54,7 @@ Some people in the Windwhistle Tower are defined by the Table of Team.]
 
 Saber is a man in the Recruitment Pool. Terri is a man in the Recruitment Pool. Miles is a man in the Recruitment Pool. Guy is a man in the Recruitment Pool.
 
-The renown of Saber is 1.
+[The renown of Saber is 1.]
 
 
 Recruiting is an action applying to one thing. Understand "Recruit [something]" as recruiting.
@@ -79,11 +82,10 @@ ASSIGN a hero to the quest number. Heroes available:[line break][go through hero
 
 Assigning is an action applying to one thing and one number. Understand "assign [something] to [number]" and "assign [something] to quest [number]" as Assigning.
 
-A person has a number called mission. The mission of a person is usually 0.
-
 Check assigning:
-	if the number understood is greater than the number of rows in the table of active quests, say "There is no quest #[number understood]." instead[;
-	if a person (called the questor) in the location of the player has a mission of 1:
+	if the number understood is greater than the number of rows in the table of active quests, say "There is no quest #[number understood]." instead;
+	if the noun is not a person, say "You can't assign that to a quest." instead;
+[if a person (called the questor) in the location of the player has a mission of 1:
 		say "[Questor] is already assigned to that quest." instead.]
 
 Carry out assigning:
@@ -95,16 +97,22 @@ Understand "Sir Bevois" and "Bevois" and "Bevis" as yourself.
 A person is usually scenery.
 
 To say quests:
-	repeat with N running from 1 to the number of rows in the Table of Active Quests:
+	repeat with N running from 1 to 5:
 		choose row N in the Table of Active Quests;
 		say "[N]: [description entry][line break]"
 
-Table of Active Quests	
+Table of Active Quests
 Quest	Description	Success	Failure	Bonus	Malus
 "rescue Josayn"	"Sir Bevois's love, Josayn, has been kidnapped by the giant Ascupard."	"Josayn has been rescued."	"Josayn is still kidnapped."	{"Cunning","Lucky"}	{"Dim","Unlucky"}
-"defeat the Dragon"	"A dragon is terrorising the people of Cologne"	"The dragon is defeated."	"The dragon still lives."	{"Brave"}	{"Cowardly"}
-"catch a horse"	"Sir Bevois's steed, Arundel, is running wild with the horses of the New Forest"	"The horse has been brought home."	"The horse still goes free."	{"Determined"}	{"Old"}
-"find a sword"	"Morgelai, Sir Bevois's dread blade, is lost in the dungeons beneath the Windwhistle Tower"	"The sword has been found."	"The sword is still lost."	{"Observant","Lucky"}	{"Unobservant","Unlucky"}
+"defeat the Dragon"	"A dragon is terrorising the people of Cologne"	"The dragon is defeated."	"The dragon still lives."	{"Brave","weilding Morgelai"}	{"Cowardly"}
+"catch a horse"	"Sir Bevois's steed, Arundel, is running wild with the horses of the New Forest"	"The horse has been brought home."	"The horse still goes free."	{"Determined","Wise"}	{"Old"}
+"find a Sword"	"Morgelai, Sir Bevois's dread blade, is lost in the dungeons beneath the Windwhistle Tower"	"The sword has been found."	"The sword is still lost."	{"Attentive","Lucky"}	{"Unobservant","Unlucky"}
+"fight in a tourney"	"King Doon is holding a jousting tournament."	"A good showing was had at the tournament."	"The joust was poor, but there is still time to enter the next bout."	{"riding Arundel","Brave"}	{"Old","Unlucky"}
+"play dice"	"King Hermin needs placating. Letting him lose at dice should help."	"The gambling went in Hermin's favour and he is well pleased."	"Unfortunately the dice favoured us and Hermin is madder than ever."	{"Unlucky","Dim"}	{"Lucky"}
+"deliver a service"	"King Yvor needs someone to baptise his children."	"The service went well."	"The service is going poorly!"	{"Devout","Old"}	{"Cynical"}
+"rebuff an invasion"	"Norse are invading the coast around the Isle of Wight!"	"The invaders have been rebuffed."	"The invaders are still at large!"	{"Brave","weilding Morgelai","riding Arundel","Attentive"}	{"Unobservant","Cowardly"}
+"fight a usurpation"	"King Redefoun has demanded Josayn's hand in marriage! Meet him on the battlefield!"	"King Redefoun has been slain!"	"King Redefoun yet lives!"	{"Brave","weilding Morgelai","riding Arundel","Loyal"}	{"Cowardly","Treacherous"}
+
 
 
 A person has a text called blurb.
@@ -118,7 +126,7 @@ Rule for reaching inside a room:
 
 [Assigning is an action applying to two things. Understand "Assign [something] to [something]" as assigning.]
 
-The printed name of the player is "Sir Bevois". The traits of the player are {"Brave", "Boastful", "Sly"}. The renown of the player is 3.
+The printed name of the player is "Sir Bevois". The traits of the player are {"Brave", "Boastful", "Sly"}.
 
 Check assigning:
 	if the noun is not a person:
@@ -183,7 +191,11 @@ Carry out sallying forth:
 		now the mission of figure is 0;
 	repeat with Y running through passed:
 		choose row Y in the Table of Active Quests;
-		blank out the whole row.
+		blank out the whole row;
+	if phase is 4:
+		say "The year is done and now the final reckoning is here:[line break]";
+		say "[go through heroes]";
+		end the story saying "Total renown: [total renown of people in the Windwhistle Tower]".
 
 Merit is a text that varies.
 
@@ -191,8 +203,11 @@ Flaw is a text that varies.
 
 Dice is a number that varies. Dice is 0.
 
+Phase is a number that varies. Phase is 0.
+
 To run through the missions:
-	 repeat with N running from 1 to the number of filled rows in the Table of Active Quests:
+	increase phase by 1;
+	repeat with N running from 1 to the number of filled rows in the Table of Active Quests:
 		choose row N in the Table of Active Quests;
 		repeat with P running through the people in the Map Room:
 			if mission of P is N:
@@ -208,6 +223,9 @@ To run through the missions:
 					if X is listed in the malus entry:
 						say "([X] - 1)";
 						decrease dice by one;
+				if P has an injury greater than 0:
+					say "(- [injury of P] injury)";
+					decrease dice by injury of P;
 				say "= [dice])[paragraph break]";
 				Let C be a random number between 1 and 3;
 				Let D be a random number between 1 and 3;
@@ -219,11 +237,23 @@ To run through the missions:
 						now flaw is the bad entry;
 				if dice is greater than seven:
 					say "[success entry] ";
+					if the quest entry is "rescue Josayn":
+						say "Josayn is now free to go on adventures. The giant is still free: once he was loyal to you.";
+						now Josayn is in the recruitment pool;
+						now Ascupart is in the recruitment pool;
+					if the quest entry is "catch a horse":
+						add "riding Arundel" to the traits of yourself;
+					if the quest entry is "find a Sword":
+						add "wielding Morgelai" to the traits of yourself;
 					add N to passed;
 					if dice is not greater than nine:
-						say "The going was tough."
+						say "[tough going]";
+						say "[easy going]";
+					otherwise:
+						say "[easy going]";
 				otherwise:
 					say "[failure entry] ";
+					say "[tough going] ";
 				if dice is greater than nine:
 					if C is less than 3:
 						say "[printed name of P]'s renown grows. (Renown +1.)";
@@ -238,10 +268,7 @@ To run through the missions:
 					if C is 3:
 						say "Through the experience, [printed name of P] becomes more [merit in lower case].";
 						add merit to the traits of P;
-					if D is 1:
-						say "[printed name of P]'s reputation suffers from the ignominy. (Renown -1.)";
-						decrease renown of P by 1;
-					if D is 2:
+					if D is less than 3:
 						say "The ordeal reveals [printed name of P] to be a [flaw in lower case] person.";
 						add flaw to the traits of P;
 					if D is 3:
@@ -257,8 +284,16 @@ To run through the missions:
 					if D is 3:
 						say "[printed name of P] is injured in the course of action.";
 						increase the injury of P by 1.
-					
+
+
+
 Understand "hire [something]" as recruiting.
+
+To say easy going:
+	say "The plan involved [one of]dressing as a leper[or]an enchanted ring[or]several feet of rope[or]a long journey[cycling]. It succeeded in the end.".
+
+To say tough going:
+	say "The [one of]going[or]ordeal[or]undertaking[at random] was [one of]tough[or]difficult[or]harrowing[cycling].".
 
 A person has a number called injury. The injury of a person is usually 0.
 
